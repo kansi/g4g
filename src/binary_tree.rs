@@ -87,32 +87,40 @@ mod binary_tree {
     }
 }
 
-fn main() {
-    let mut root = binary_tree::new_node(&1);
-    let mut node2 = binary_tree::new_node(&2);
-    let node3 = binary_tree::new_node(&3);
-    let node4 = binary_tree::new_node(&4);
-    let node5 = binary_tree::new_node(&5);
+#[cfg(test)]
+mod tests {
+    use super::*;
 
-    node2.left = Some(&node4);
-    node2.right = Some(&node5);
-    root.left = Some(&node2);
-    root.right = Some(&node3);
+    #[test]
+    fn test_binary_tree() {
+        let mut root = binary_tree::new_node(&1);
+        let mut node2 = binary_tree::new_node(&2);
+        let node3 = binary_tree::new_node(&3);
+        let node4 = binary_tree::new_node(&4);
+        let node5 = binary_tree::new_node(&5);
 
-    print!("preorder: ");
-    binary_tree::preorder(&root);
-    println!("");
+        node2.left = Some(&node4);
+        node2.right = Some(&node5);
+        root.left = Some(&node2);
+        root.right = Some(&node3);
 
-    print!("inorder: ");
-    binary_tree::inorder(&root);
-    println!("");
+        print!("preorder: ");
+        binary_tree::preorder(&root);
+        println!("");
 
-    print!("inorder: ");
-    binary_tree::postorder(&root);
-    println!("");
+        print!("inorder: ");
+        binary_tree::inorder(&root);
+        println!("");
 
-    let mut bfs: Vec<u32> = vec![0_u32; 4];
-    bfs.insert(0, root.value);
-    binary_tree::bfs(&root, 0, 0, &mut bfs);
-    println!("{:?}", bfs);
+        print!("inorder: ");
+        binary_tree::postorder(&root);
+        println!("");
+
+        let mut bfs: Vec<u32> = vec![0_u32; 4];
+        bfs.insert(0, root.value);
+        binary_tree::bfs(&root, 0, 0, &mut bfs);
+        println!("{:?}", bfs);
+
+        assert_eq!(1, 1);
+    }
 }
